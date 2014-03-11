@@ -1,9 +1,10 @@
-class UsersController < ApplicationController
+class UsersController < ResourceController
+  before_filter :load_resource_presenter, :only => [:show, :new, :edit, :create]
+  before_filter :load_resource_presenters, :only => :index
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
   end
 
   # GET /users/1
@@ -64,6 +65,14 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :birthdate)
+    params.require(:user).permit(:first_name, :last_name, :birthdate, :ssn)
+  end
+
+  def load_resource_presenter
+    @user_presenter = UserPresenter.new(@user)
+  end
+
+  def load_resource_presenters
+    @user_presenters = @users.map {|user| UserPresenter.new(user) }
   end
 end
