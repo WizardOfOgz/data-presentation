@@ -8,7 +8,7 @@ class UserPresenter < BasePresenter
   end
 
   def ssn
-    object.ssn && "xxx-xx-#{object.ssn[-4..-1]}"
+    "xxx-xx-#{object.ssn[-4..-1]}"  if object.ssn.present?
   end
 
   def age
