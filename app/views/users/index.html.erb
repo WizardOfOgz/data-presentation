@@ -13,15 +13,14 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @user_presenters.each do |user_presenter| %>
       <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.birthdate %></td>
-        <td><%= user.ssn %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="record-attr-value"><%= user_presenter.name %></td>
+        <td class="record-attr-value"><%= user_presenter.birthdate %></td>
+        <td class="record-attr-value"><%= user_presenter.ssn %></td>
+        <td class="record-attr-value"><%= link_to 'Show', user_presenter.show_url %></td>
+        <td class="record-attr-value"><%= link_to 'Edit', user_presenter.edit_url %></td>
+        <td class="record-attr-value"><%= link_to 'Destroy', user_presenter.show_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

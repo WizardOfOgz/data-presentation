@@ -1,24 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
+  <strong>Name:</strong>
+  <%= @user_presenter.name %>
 </p>
 
 <p>
   <strong>Birthdate:</strong>
-  <%= @user.birthdate %>
+  <%= @user_presenter.birthdate %>
 </p>
 
 <p>
   <strong>SSN:</strong>
-  <%= @user.ssn %>
+  <%= @user_presenter.ssn %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<a href="<%= @user_presenter.edit_url %>">Edit</a> |
+<a href="<%= @user_presenter.index_url %>">Back</a>
+
