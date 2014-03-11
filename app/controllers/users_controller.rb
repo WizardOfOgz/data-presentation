@@ -1,6 +1,6 @@
 class UsersController < ResourceController
-  before_filter :load_resource_presenter, :only => [:show, :new, :edit, :create]
-  before_filter :load_resource_presenters, :only => :index
+  before_filter :decorate_resource, :only => [:show, :new, :edit, :create]
+  before_filter :decorate_resources, :only => :index
 
   # GET /users
   # GET /users.json
@@ -68,11 +68,11 @@ class UsersController < ResourceController
     params.require(:user).permit(:first_name, :last_name, :birthdate, :ssn)
   end
 
-  def load_resource_presenter
-    @user_presenter = UserPresenter.new(@user)
+  def decorate_resource
+    @user.decorate!
   end
 
-  def load_resource_presenters
-    @user_presenters = @users.map {|user| UserPresenter.new(user) }
+  def decorate_resources
+    @users.each {|user| user.decorate! }
   end
 end
