@@ -1,6 +1,6 @@
 module UserDecorator
   def name  # New method
-    [first_name, last_name].reject(&:blank?).join(' ')
+    [last_name, first_name].reject(&:blank?).join(', ')
   end
 
   def ssn  # Override model method
